@@ -1,0 +1,36 @@
+{
+  "name": "deps",
+  "version": "1.0.0",
+  "description": "Node dependency usage checker using V8 Coverage",
+  "keywords": [
+    "node",
+    "dependency",
+    "usage",
+    "coverage",
+    "v8"
+  ],
+  "files": ["bin"],
+  "main": "index.js",
+  "bin": {
+    "deps": "bin/deps.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/privatenumber/deps.git"
+  },
+  "author": "Hiroki Osame <hiroki.osame@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/privatenumber/deps/issues"
+  },
+  "homepage": "https://github.com/privatenumber/deps#readme",
+  "dependencies": {
+    "del": "^5.1.0",
+    "execa": "^4.0.1",
+    "minimist": "^1.2.5",
+    "outdent": "^0.7.1",
+    "read-pkg": "^5.2.0",
+    "sort-keys": "^4.0.0",
+    "tempy": "^0.5.0"
+  }
+}
