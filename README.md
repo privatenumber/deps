@@ -1,2 +1,3 @@
-# deps
-Node dependency checker using V8 Coverage
+# 📦 deps
+
+Node dependency usage checker using V8 Coverage
