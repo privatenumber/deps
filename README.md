@@ -44,5 +44,4 @@ eg. `deps npm run build`
 
 
 ## 🤔 How does it work?
-`deps` sets an environment variable to tap into [V8's code coverage](https://nodejs.org/api/cli.html#cli_node_v8_coverage_dir) data. Using the coverage reports, `deps` is able to analyze exactly which dependency files were used when running a script.
-
+`deps` sets an environment variable to tap into [V8's code coverage](https://nodejs.org/api/cli.html#cli_node_v8_coverage_dir) feature. By analyzing the genereated coverage reports, `deps` is able to determine exactly which dependency files were used when running a script.
