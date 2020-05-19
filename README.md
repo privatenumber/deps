@@ -2,22 +2,35 @@
 
 Node dependency usage checker using V8 Coverage
 
+## :rocket: Install
+#### Global install
+```sh
+npm i -g deps
+```
 
-### Quick usage
-Just prefix your Node script with `deps` and it will output the dependencies it used
+#### npx
+```sh
+npx deps
+```
+
+## 🔬 Quick analysis
+Prefix your Node script with `deps` and it will output the dependencies it used
 ```sh
 $ deps ...
 ```
-
 eg. `deps npm run build`
 
-### Analyzing dependency usage across commands
-1. Start recording dependecy usage
+## 👩‍🔬 Analyzing dependency usage across commands
+1. Start recording dependecy usage (note the [dot-space](https://superuser.com/questions/1136409/what-is-the-dot-space-filename-command-doing-in-bash) at the beginning)
   ```sh
   $ . deps-start
   ```
 
-2. Run a series of Node scripts
+2. Run a series of Node scripts eg.
+  - `npm run dev`
+  - `npm run build`
+  - `npm run lint`
+  - etc.
 
 3. Analyze used dependencies
   ```sh
@@ -30,7 +43,6 @@ eg. `deps npm run build`
   ```
 
 
-
-### How does it work?
-Using [V8's code coverage](https://nodejs.org/api/cli.html#cli_node_v8_coverage_dir) data, `deps` is able to analyze exactly which files were used when running a script.
+## 🤔 How does it work?
+`deps` sets an environment variable to tap into [V8's code coverage](https://nodejs.org/api/cli.html#cli_node_v8_coverage_dir) data. Using the coverage reports, `deps` is able to analyze exactly which dependency files were used when running a script.
 
