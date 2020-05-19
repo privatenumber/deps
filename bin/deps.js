@@ -9,9 +9,9 @@ const del = require('del');
 const path = require('path');
 const assert = require('assert');
 const { promises: fs } = require('fs');
+const util = require('util');
 const { showHelp, showVersion } = require('../lib/utils');
 const { getReports, getUsedDeps } = require('../lib/parse-reports');
-const util = require('util');
 
 const getUnusedDeps = (usedDependencies, pkgJsn) => {
 	const unusedDependencies = {};
@@ -72,7 +72,7 @@ const getUnusedDeps = (usedDependencies, pkgJsn) => {
 	};
 
 	// if (argv.unused) {
-		result.unusedDependencies = getUnusedDeps(
+	result.unusedDependencies = getUnusedDeps(
 			usedDependencies,
 			await readPkg(),
 		);

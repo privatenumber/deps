@@ -9,10 +9,16 @@
     "coverage",
     "v8"
   ],
-  "files": ["bin"],
+  "files": [
+    "bin",
+    "lib"
+  ],
   "main": "index.js",
   "bin": {
     "deps": "bin/deps.js"
+  },
+  "scripts": {
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -32,5 +38,10 @@
     "read-pkg": "^5.2.0",
     "sort-keys": "^4.0.0",
     "tempy": "^0.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
   }
 }
