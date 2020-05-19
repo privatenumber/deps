@@ -2,16 +2,11 @@
 
 const execa = require('execa');
 const tempy = require('tempy');
-const outdent = require('outdent');
-const sortKeys = require('sort-keys');
 const readPkg = require('read-pkg');
 const del = require('del');
-const path = require('path');
 const assert = require('assert');
-const { promises: fs } = require('fs');
-const util = require('util');
-const { showHelp, showVersion } = require('../lib/utils');
-const { getReports, getUsedDeps } = require('../lib/parse-reports');
+const { showHelp, showVersion, outputResult } = require('../lib/utils');
+const { getReports, getUsedDeps } = require('../lib/reports');
 
 const getUnusedDeps = (usedDependencies, pkgJsn) => {
 	const unusedDependencies = {};
@@ -31,15 +26,28 @@ const getUnusedDeps = (usedDependencies, pkgJsn) => {
 	return unusedDependencies;
 };
 
+async function analyzeCoverageDir(coverageDir, { verbose }) {
+	const usedDependencies = getUsedDeps(await getReports(coverageDir));
+
+	const result = {
+		usedDependencies: verbose ? usedDependencies : Object.keys(usedDependencies),
+	};
+
+	result.unusedDependencies = getUnusedDeps(
+		usedDependencies,
+		await readPkg(),
+	);
+
+	return result;
+}
+
 (async () => {
 	const argv = require('minimist')(process.argv.slice(2), {
 		boolean: [
-			'unused',
 			'verbose',
 			'help',
 		],
 		alias: {
-			unused: 'u',
 			verbose: 'v',
 			output: 'o',
 			help: 'h',
@@ -56,38 +64,30 @@ const getUnusedDeps = (usedDependencies, pkgJsn) => {
 
 	const cmd = argv._.join(' ');
 	assert(cmd, 'A command must be passed in');
+
+	if (cmd === 'analyze') {
+		const { NODE_V8_COVERAGE: coverageDir } = process.env;
+		assert(coverageDir, 'Recording not started. Start by running `. deps-record`');
+
+		const reports = await getReports(coverageDir);
+		assert(reports.length, 'No usage found');
+
+		const result = await analyzeCoverageDir(coverageDir, argv);
+		return outputResult(result, argv);
+	}
+
 	const coverageDir = tempy.directory();
-	const res = await execa.command(cmd, {
+	await execa.command(cmd, {
 		stdio: 'inherit',
 		env: {
 			NODE_V8_COVERAGE: coverageDir,
 		},
 	});
 
-	const usedDependencies = getUsedDeps(await getReports(coverageDir));
+	const result = await analyzeCoverageDir(coverageDir, argv);
 	const deletingDir = del([coverageDir], { force: true });
 
-	const result = {
-		usedDependencies: argv.verbose ? usedDependencies : Object.keys(usedDependencies),
-	};
-
-	// if (argv.unused) {
-	result.unusedDependencies = getUnusedDeps(
-			usedDependencies,
-			await readPkg(),
-		);
-	// }
-
-	if (argv.output) {
-		const resultStr = JSON.stringify(result, null, '  ');
-		await fs.writeFile(argv.output, resultStr);
-	} else {
-		console.log(util.inspect(result, {
-			colors: true,
-			depth: null,
-			maxArrayLength: null,
-		}));
-	}
+	await outputResult(result, argv);
 
 	return deletingDir;
 })();

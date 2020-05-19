@@ -15,7 +15,9 @@
   ],
   "main": "index.js",
   "bin": {
-    "deps": "bin/deps.js"
+    "deps": "bin/deps.js",
+    "deps-start": "bin/deps-start.sh",
+    "deps-stop": "bin/deps-stop.sh"
   },
   "scripts": {
     "lint": "eslint ."
