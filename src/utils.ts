@@ -1,9 +1,16 @@
-const outdent = require('outdent');
-const util = require('util');
-const { promises: fs } = require('fs');
+import outdent from 'outdent';
+import util from 'util';
+import * as fs from 'fs';
+import * as t from './types';
 
-function showHelp() {
+const $writeFile = util.promisify(fs.writeFile);
+
+export function showHelp(): void {
+	const { version } = require('../package');
+
 	console.log(outdent`
+		deps ${version}
+
 		Quick usage: deps "node file.js"
 		Records and analyzes the dependency usage of a given command
 
@@ -20,14 +27,14 @@ function showHelp() {
 	`);
 }
 
-function showVersion() {
-	console.log(require('../package').version);
-}
-
-function outputResult(result, { output }) {
+export async function outputResult(
+	result: t.Result,
+	{ output }: t.Options
+): Promise<void> {
 	if (output) {
 		const resultStr = JSON.stringify(result, null, '  ');
-		return fs.writeFile(output, resultStr);
+		await $writeFile(output, resultStr);
+		return;
 	}
 
 	return console.log(util.inspect(result, {
@@ -36,9 +43,3 @@ function outputResult(result, { output }) {
 		maxArrayLength: null,
 	}));
 }
-
-module.exports = {
-	showHelp,
-	showVersion,
-	outputResult,
-};
