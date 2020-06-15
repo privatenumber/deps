@@ -32,9 +32,7 @@ const getReports = async (coverageDir: string): Promise<ReportEntry[][]> => Prom
 		})
 );
 
-// TODO: Double check
-const depPtrn = /^(.*node_modules\/(@[^/]+\/)?[^/]+)/;
-
+const depPtrn = /^.*node_modules\/(@[^/]+\/)?[^/]+/;
 
 const cwd = `file://${process.cwd()}`;
 
