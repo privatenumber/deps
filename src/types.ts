@@ -1,10 +1,10 @@
 export interface Options {
 	verbose: boolean;
 	output: string;
-};
+}
 
 export interface Dependencies {
-	[key: string]: string[]
+	[key: string]: string[];
 }
 
 export interface UnsedDependencies {

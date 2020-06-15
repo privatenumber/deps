@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs';
+import {promises as fs} from 'fs';
 import path from 'path';
 import sortKeys from 'sort-keys';
 import * as t from './types';
@@ -18,14 +18,14 @@ interface EntryFunction {
 interface ReportEntry {
 	scriptId: string;
 	url: string;
-	functions: EntryFunction[]
+	functions: EntryFunction[];
 
 }
 
 const getReports = async (coverageDir: string): Promise<ReportEntry[][]> => Promise.all(
 	(await fs.readdir(coverageDir))
-		.filter((f) => f.endsWith('.json'))
-		.map(async (file) => {
+		.filter(f => f.endsWith('.json'))
+		.map(async file => {
 			const reportPath = path.resolve(coverageDir, file);
 			const content = await fs.readFile(reportPath);
 			return JSON.parse(content.toString()).result;
@@ -41,14 +41,18 @@ const analyzeReports = async (coverageDir: string): Promise<t.Dependencies> => {
 
 	const usedDependencies: t.Dependencies = {};
 
-	reports.forEach((reportFiles) => {
-		reportFiles.forEach((f) => {
-			if (!f.url.startsWith(cwd)) { return; }
+	reports.forEach(reportFiles => {
+		reportFiles.forEach(f => {
+			if (!f.url.startsWith(cwd)) {
+				return;
+			}
 
 			const relativePath = f.url.slice(cwd.length + 1);
-			const isDep = relativePath.match(depPtrn);
+			const isDep = depPtrn.exec(relativePath);
 
-			if (!isDep) { return; }
+			if (!isDep) {
+				return;
+			}
 
 			const [depName] = isDep;
 
