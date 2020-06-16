@@ -21,7 +21,6 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc -p src",
-    "dev": "npm run build -- -w",
     "lint": "xo"
   },
   "husky": {
@@ -43,9 +42,9 @@
   },
   "homepage": "https://github.com/privatenumber/deps#readme",
   "dependencies": {
-    "cac": "^6.5.10",
     "del": "^5.1.0",
     "execa": "^4.0.1",
+    "minimist": "^1.2.5",
     "outdent": "^0.7.1",
     "read-pkg": "^5.2.0",
     "sort-keys": "^4.0.0",
