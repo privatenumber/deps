@@ -23,6 +23,17 @@
     "build": "rm -rf dist && tsc -p src",
     "lint": "xo"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "xo --fix",
+      "tsc -p src/tsconfig.json --noEmit"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/privatenumber/deps.git"
@@ -45,6 +56,8 @@
   "devDependencies": {
     "@types/minimist": "^1.2.0",
     "@types/node": "^14.0.13",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.10",
     "typescript": "^3.9.5",
     "xo": "^0.32.0"
   }
