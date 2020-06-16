@@ -20,6 +20,7 @@
     "deps-stop": "bin/deps-stop.sh"
   },
   "scripts": {
+    "build": "rm -rf dist && tsc -p src",
     "lint": "eslint ."
   },
   "repository": {
@@ -42,8 +43,11 @@
     "tempy": "^0.5.0"
   },
   "devDependencies": {
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^14.0.13",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2"
+    "eslint-plugin-import": "^2.20.2",
+    "typescript": "^3.9.5"
   }
 }
