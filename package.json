@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc -p src",
+    "dev": "npm run build -- -w",
     "lint": "xo"
   },
   "husky": {
