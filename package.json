@@ -29,9 +29,9 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.[tj]s": [
       "xo --fix",
-      "tsc -p src/tsconfig.json --noEmit"
+      "tsc -p src --noEmit"
     ]
   },
   "repository": {
