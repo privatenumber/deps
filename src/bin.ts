@@ -7,13 +7,13 @@ import deps from '.';
 		boolean: [
 			'version',
 			'verbose',
-			'help'
+			'help',
 		],
 		alias: {
 			verbose: 'v',
 			output: 'o',
-			help: 'h'
-		}
+			help: 'h',
+		},
 	});
 
 	if (help || version) {

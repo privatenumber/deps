@@ -10,15 +10,15 @@ import {PackageJson} from 'type-fest';
 
 const getPkgUnused = (
 	usedDependencies: t.Dependencies,
-	dependencyHash: PackageJson.Dependency = {}
+	dependencyHash: PackageJson.Dependency = {},
 ): string[] => Object.keys(dependencyHash).filter(p => !(`node_modules/${p}` in usedDependencies));
 
 const getUnusedDeps = (
 	usedDependencies: t.Dependencies,
-	pkgJsn: readPkg.NormalizedPackageJson
+	pkgJsn: readPkg.NormalizedPackageJson,
 ): t.UnsedDependencies => ({
 	dependencies: getPkgUnused(usedDependencies, pkgJsn.dependencies),
-	devDependencies: getPkgUnused(usedDependencies, pkgJsn.devDependencies)
+	devDependencies: getPkgUnused(usedDependencies, pkgJsn.devDependencies),
 });
 
 async function analyzeCoverageDir(coverageDir: string, {verbose}: t.Options): Promise<t.Result> {
@@ -28,8 +28,8 @@ async function analyzeCoverageDir(coverageDir: string, {verbose}: t.Options): Pr
 		usedDependencies: verbose ? usedDependencies : Object.keys(usedDependencies),
 		unusedDependencies: getUnusedDeps(
 			usedDependencies,
-			await readPkg()
-		)
+			await readPkg(),
+		),
 	};
 }
 
@@ -46,8 +46,8 @@ async function deps(cmd: string, options: t.Options) {
 		await execa.command(cmd, {
 			stdio: 'inherit',
 			env: {
-				NODE_V8_COVERAGE: coverageDir
-			}
+				NODE_V8_COVERAGE: coverageDir,
+			},
 		});
 	}
 

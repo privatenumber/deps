@@ -29,7 +29,7 @@ export function showHelp(): void {
 
 export async function outputResult(
 	result: t.Result,
-	{output}: t.Options
+	{output}: t.Options,
 ): Promise<void> {
 	if (output) {
 		const resultString = JSON.stringify(result, null, '  ');
@@ -40,6 +40,6 @@ export async function outputResult(
 	return console.log(util.inspect(result, {
 		colors: true,
 		depth: null,
-		maxArrayLength: null
+		maxArrayLength: null,
 	}));
 }

@@ -29,7 +29,7 @@ const getReports = async (coverageDir: string): Promise<ReportEntry[][]> => Prom
 			const reportPath = path.resolve(coverageDir, file);
 			const content = await fs.readFile(reportPath);
 			return JSON.parse(content.toString()).result;
-		})
+		}),
 );
 
 const depPtrn = /^.*node_modules\/(@[^/]+\/)?[^/]+/;
