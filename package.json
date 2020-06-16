@@ -25,14 +25,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && tsc -p src --composite false --noEmit"
     }
   },
   "lint-staged": {
-    "*.[tj]s": [
-      "xo --fix",
-      "tsc -p src --noEmit"
-    ]
+    "*.[tj]s": "xo --fix"
   },
   "repository": {
     "type": "git",
