@@ -1,4 +1,4 @@
-import outdent from 'outdent';
+import outdent from 'outdent'; // eslint-disable-line import/no-named-as-default
 import util from 'util';
 import * as fs from 'fs';
 import * as t from './types';
@@ -6,7 +6,7 @@ import * as t from './types';
 const $writeFile = util.promisify(fs.writeFile);
 
 export function showHelp(): void {
-	const { version } = require('../package');
+	const {version} = require('../package'); // eslint-disable-line @typescript-eslint/no-var-requires
 
 	console.log(outdent`
 		deps ${version}
@@ -29,11 +29,11 @@ export function showHelp(): void {
 
 export async function outputResult(
 	result: t.Result,
-	{ output }: t.Options
+	{output}: t.Options,
 ): Promise<void> {
 	if (output) {
-		const resultStr = JSON.stringify(result, null, '  ');
-		await $writeFile(output, resultStr);
+		const resultString = JSON.stringify(result, null, '  ');
+		await $writeFile(output, resultString);
 		return;
 	}
 

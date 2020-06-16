@@ -21,7 +21,15 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc -p src",
-    "lint": "eslint ."
+    "lint": "xo"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && tsc -p src --composite false --noEmit"
+    }
+  },
+  "lint-staged": {
+    "*.[tj]s": "xo --fix"
   },
   "repository": {
     "type": "git",
@@ -45,9 +53,9 @@
   "devDependencies": {
     "@types/minimist": "^1.2.0",
     "@types/node": "^14.0.13",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2",
-    "typescript": "^3.9.5"
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.10",
+    "typescript": "^3.9.5",
+    "xo": "^0.32.0"
   }
 }
