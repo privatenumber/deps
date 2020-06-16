@@ -9,21 +9,24 @@ export function showHelp(): void {
 	const {version} = require('../package'); // eslint-disable-line @typescript-eslint/no-var-requires
 
 	console.log(outdent`
-		deps ${version}
+		deps ${version} - analyze used/unused package dependencies
 
-		Quick usage: deps "node file.js"
-		Records and analyzes the dependency usage of a given command
+		Quick usage:
+		  $ deps <...command>    Record and analyze the dependency usage of a command
 
-		Commands:
-		\`. deps-start\`     Start recording dependency usage
-		\`. deps-stop\`      Stop recording dependency usage
-		\`deps analyze\`     Analyze recorded data
+		  Example:
+		    $ deps "node file.js"
+
+		Recording session:
+		  $ . deps-start         Start dependency usage recording session
+		  $ deps analyze         Analyze recorded data during an active session
+		  $ . deps-stop          Stop dependency usage recording session
 
 		Options:
-		--help, -h         [boolean] show help
-		--version          [boolean] show version
-		--output, -o       [string] target destination for JSON
-		--verbose, -v      [boolean] verbose mode - Output as an object with specific files
+		  --help, -h            [boolean] show help
+		  --version             [boolean] show version
+		  --output, -o          [string] target destination for JSON
+		  --verbose, -v         [boolean] verbose mode - Output as an object with specific files
 	`);
 }
 
