@@ -18,8 +18,8 @@ import deps from '.';
 			void deps(command.join(' '), {verbose, output});
 		});
 
-	// Cli
-	// 	.command('analyze <JSON file>');
+	cli
+		.command('analyze', 'Analyze used dependencies in an active session');
 
 	cli.parse();
 })().catch(error => {
