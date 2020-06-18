@@ -38,7 +38,14 @@ _Prerequisite: install `deps` globally_
   ```sh
   $ deps analyze
   ```
-  -  Save data to file: `deps analyze -o output.json`
+  - Save data to file:
+    ```sh
+    deps analyze -o output.json
+    ```
+  - Read later with:
+    ```sh
+    deps -f output.json
+    ```
 
 4. When you're done, stop recording
   ```sh
