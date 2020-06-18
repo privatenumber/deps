@@ -1,8 +1,9 @@
 import minimist from 'minimist';
+import chalk from 'chalk';
 import {showHelp} from './utils';
 import deps from '.';
 
-(async () => {
+export default (async () => {
 	const {help, version, verbose, output, _} = minimist(process.argv.slice(2), {
 		boolean: [
 			'version',
@@ -16,13 +17,19 @@ import deps from '.';
 		},
 	});
 
-	if (help || version) {
-		return showHelp();
+	if (_.length > 0) {
+		const cmd = process.argv.slice(2).join(' ');
+		return deps(cmd, {verbose, output});
 	}
 
-	const cmd = _.join(' ');
+	if (!help && !version) {
+		console.log(chalk.red.bold('\n[deps error]'), 'No command passed in');
+		showHelp();
+		return 1;
+	}
 
-	return deps(cmd, {verbose, output});
+	showHelp();
+	return 0;
 })().catch(error => {
-	console.log('Error:', error.message);
+	console.log(chalk.red.bold('\n[deps error]'), error.message);
 });

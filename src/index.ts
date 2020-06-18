@@ -37,18 +37,20 @@ async function deps(cmd: string, options: t.Options) {
 	assert(cmd, 'A command must be passed in');
 
 	let coverageDir;
-
+	let useExitcode = 0;
 	if (cmd === 'analyze') {
 		coverageDir = process.env.NODE_V8_COVERAGE;
 		assert(coverageDir, 'Recording not started. Start by running `. deps-record`');
 	} else {
 		coverageDir = tempy.directory();
-		await execa.command(cmd, {
+		const result = await execa.command(cmd, {
+			reject: false,
 			stdio: 'inherit',
 			env: {
 				NODE_V8_COVERAGE: coverageDir,
 			},
 		});
+		useExitcode = result.exitCode;
 	}
 
 	const result = await analyzeCoverageDir(coverageDir, options);
@@ -57,6 +59,8 @@ async function deps(cmd: string, options: t.Options) {
 	if (cmd !== 'analyze') {
 		await del([coverageDir], {force: true});
 	}
+
+	return useExitcode;
 }
 
 export default deps;
