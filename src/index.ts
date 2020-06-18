@@ -1,37 +1,10 @@
 import execa from 'execa';
 import tempy from 'tempy';
-import readPkg from 'read-pkg';
 import assert from 'assert';
 import del from 'del';
 import analyzeReports from './analyze-reports';
-import {outputResult} from './utils';
+import outputResult from './output-result';
 import * as t from './types';
-import {PackageJson} from 'type-fest';
-
-const getPkgUnused = (
-	usedDependencies: t.Dependencies,
-	dependencyHash: PackageJson.Dependency = {},
-): string[] => Object.keys(dependencyHash).filter(p => !(`node_modules/${p}` in usedDependencies));
-
-const getUnusedDeps = (
-	usedDependencies: t.Dependencies,
-	pkgJsn: readPkg.NormalizedPackageJson,
-): t.UnsedDependencies => ({
-	dependencies: getPkgUnused(usedDependencies, pkgJsn.dependencies),
-	devDependencies: getPkgUnused(usedDependencies, pkgJsn.devDependencies),
-});
-
-async function analyzeCoverageDir(coverageDir: string, {verbose}: t.Options): Promise<t.Result> {
-	const usedDependencies = await analyzeReports(coverageDir);
-
-	return {
-		usedDependencies: verbose ? usedDependencies : Object.keys(usedDependencies),
-		unusedDependencies: getUnusedDeps(
-			usedDependencies,
-			await readPkg(),
-		),
-	};
-}
 
 async function deps(cmd: string, options: t.Options) {
 	assert(cmd, 'A command must be passed in');
@@ -53,8 +26,9 @@ async function deps(cmd: string, options: t.Options) {
 		useExitcode = result.exitCode;
 	}
 
-	const result = await analyzeCoverageDir(coverageDir, options);
-	await outputResult(result, options);
+	const usedDependencies = await analyzeReports(coverageDir);
+
+	await outputResult(usedDependencies, options);
 
 	if (cmd !== 'analyze') {
 		await del([coverageDir], {force: true});

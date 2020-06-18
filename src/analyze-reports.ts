@@ -1,7 +1,11 @@
-import {promises as fs} from 'fs';
+import * as fs from 'fs';
+import util from 'util';
 import path from 'path';
 import sortKeys from 'sort-keys';
 import * as t from './types';
+
+const $readdir = util.promisify(fs.readdir);
+const $readFile = util.promisify(fs.readFile);
 
 interface FunctionRange {
 	startOffset: number;
@@ -23,11 +27,11 @@ interface ReportEntry {
 }
 
 const getReports = async (coverageDir: string): Promise<ReportEntry[][]> => Promise.all(
-	(await fs.readdir(coverageDir))
+	(await $readdir(coverageDir))
 		.filter(f => f.endsWith('.json'))
 		.map(async file => {
 			const reportPath = path.resolve(coverageDir, file);
-			const content = await fs.readFile(reportPath);
+			const content = await $readFile(reportPath);
 			return JSON.parse(content.toString()).result;
 		}),
 );
