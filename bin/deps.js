@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../dist/bin'); // eslint-disable-line import/no-unassigned-import
+require('../dist/bin').default.then(process.exit);
