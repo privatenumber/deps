@@ -1,4 +1,4 @@
-# 📦 deps
+# 📦 deps <a href="https://npm.im/deps"><img src="https://badgen.net/npm/v/deps"></a> <a href="https://npm.im/deps"><img src="https://badgen.net/npm/dm/deps"></a> <a href="https://packagephobia.now.sh/result?p=deps"><img src="https://packagephobia.now.sh/badge?p=deps"></a>
 
 Node dependency usage checker using V8 Coverage. Try it out!
 
