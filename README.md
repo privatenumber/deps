@@ -36,6 +36,7 @@ eg. `deps npm run build`
   ```sh
   $ deps analyze
   ```
+  -  Save data to file: `deps analyze -o output.json`
 
 4. When you're done, stop recording
   ```sh
