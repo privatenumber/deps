@@ -1,25 +1,32 @@
 import minimist from 'minimist';
 import chalk from 'chalk';
-import {showHelp} from './utils';
+import showHelp from './show-help';
+import outputResult from './output-result';
 import deps from '.';
+import * as path from 'path';
 
 export default (async () => {
-	const {help, version, verbose, output, _} = minimist(process.argv.slice(2), {
+	const {help, version, verbose, output, file, _} = minimist(process.argv.slice(2), {
 		boolean: [
 			'version',
-			'verbose',
 			'help',
 		],
 		alias: {
-			verbose: 'v',
+			file: 'f',
 			output: 'o',
 			help: 'h',
 		},
 	});
 
 	if (_.length > 0) {
-		const cmd = process.argv.slice(2).join(' ');
+		const cmd = _.join(' ');
 		return deps(cmd, {verbose, output});
+	}
+
+	if (file) {
+		const pkg = require(path.resolve(file)); // eslint-disable-line @typescript-eslint/no-var-requires
+		await outputResult(pkg);
+		return 0;
 	}
 
 	if (!help && !version) {

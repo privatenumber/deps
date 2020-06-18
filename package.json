@@ -44,6 +44,7 @@
   "homepage": "https://github.com/privatenumber/deps#readme",
   "dependencies": {
     "chalk": "^4.1.0",
+    "cli-simple-table": "0.0.1",
     "del": "^5.1.0",
     "execa": "^4.0.1",
     "minimist": "^1.2.5",

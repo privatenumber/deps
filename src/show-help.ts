@@ -1,12 +1,7 @@
 import outdent from 'outdent'; // eslint-disable-line import/no-named-as-default
 import chalk from 'chalk';
-import util from 'util';
-import * as fs from 'fs';
-import * as t from './types';
 
-const $writeFile = util.promisify(fs.writeFile);
-
-export function showHelp(): void {
+function showHelp(): void {
 	const version: string = require('../package').version; // eslint-disable-line @typescript-eslint/no-var-requires
 
 	console.log(outdent`
@@ -39,19 +34,4 @@ export function showHelp(): void {
 	`);
 }
 
-export async function outputResult(
-	result: t.Result,
-	{output}: t.Options,
-): Promise<void> {
-	if (output) {
-		const resultString = JSON.stringify(result, null, '  ');
-		await $writeFile(output, resultString);
-		return;
-	}
-
-	return console.log(util.inspect(result, {
-		colors: true,
-		depth: null,
-		maxArrayLength: null,
-	}));
-}
+export default showHelp;
