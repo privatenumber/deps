@@ -13,14 +13,16 @@ Install globally if you don't want to use it via [npx](https://blog.npmjs.org/po
 npm i -g deps
 ```
 
-## 🔬 Quick analysis
+## Usage
+### 🔬 Quick analysis
 Prefix your Node command with `deps` and it will analyze and output the dependencies it used
 ```sh
 $ deps ...
 ```
 eg. `deps npm run build`
 
-## 👩‍🔬 Analyzing dependency usage across commands
+### 👩‍🔬 Analyzing dependency usage across commands
+_Prerequisite: install `deps` globally_
 1. Start recording dependecy usage (note the [dot-space](https://superuser.com/questions/1136409/what-is-the-dot-space-filename-command-doing-in-bash) at the beginning)
   ```sh
   $ . deps-start
