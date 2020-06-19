@@ -1,6 +1,6 @@
 # 📦 deps <a href="https://npm.im/deps"><img src="https://badgen.net/npm/v/deps"></a> <a href="https://npm.im/deps"><img src="https://badgen.net/npm/dm/deps"></a> <a href="https://packagephobia.now.sh/result?p=deps"><img src="https://packagephobia.now.sh/badge?p=deps"></a>
 
-Accurately detect which package dependencies are in use using V8 Coverage.
+Accurately detect which Node dependencies are in-use with V8 Coverage 🔥
 
 #### Try it out!
 ```sh
