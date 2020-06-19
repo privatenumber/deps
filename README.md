@@ -1,7 +1,8 @@
 # 📦 deps <a href="https://npm.im/deps"><img src="https://badgen.net/npm/v/deps"></a> <a href="https://npm.im/deps"><img src="https://badgen.net/npm/dm/deps"></a> <a href="https://packagephobia.now.sh/result?p=deps"><img src="https://packagephobia.now.sh/badge?p=deps"></a>
 
-Node dependency usage checker using V8 Coverage. Try it out!
+Accurately detect which package dependencies are in use using V8 Coverage.
 
+#### Try it out!
 ```sh
 $ npx deps [...command]
 ```
@@ -52,8 +53,13 @@ _Prerequisite: install `deps` globally_
   $ . deps-stop
   ```
 
-## 🤔 How does it work?
-`deps` sets an environment variable to tap into [V8's code coverage](https://nodejs.org/api/cli.html#cli_node_v8_coverage_dir) feature. By analyzing the genereated coverage reports, `deps` is able to determine exactly which dependency files were used when running a script.
+## 💁‍♂️ FAQ
+
+#### How does it work?
+`deps` detects which modules are loaded by using [V8's code coverage](https://nodejs.org/api/cli.html#cli_node_v8_coverage_dir) feature, so it's very accurate. However, it doesn't detect file-system reads, as they are simply read as text rather than actually being parsed and executed. That means it can't detect what files are statically analyzed by bundlers (eg. Webpack, Rollup, etc.). I am considering supporting FS reads in the future.
+
+#### How does it compare to `depcheck`?
+[`depcheck`](https://github.com/depcheck/depcheck) statically analyzes your project to see which dependencies are imported, avoiding the need to execute code. In contrast, `deps` executes code to analyze which dependencies were loaded during run-time. They work in completely different ways, but a major drawback for me is that `depcheck` requires a ["special"](https://github.com/depcheck/depcheck#special) for supporting whether a module was loaded via dev-tools.
 
 ## 💼 License
 MIT
