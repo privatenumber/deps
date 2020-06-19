@@ -46,11 +46,13 @@ async function outputResult(
 
 	Object.keys(result).forEach(key => {
 		if (result[key].length > 0) {
-			table.row(key.replace(/^.*?node_modules\//, ''), 'nested', `✅ (${result[key].length})`);
+			table.row(chalk.dim(key.replace(/^.*?node_modules\//, '')), 'nested', `✅ (${result[key].length})`);
 		}
 	});
 
 	console.log('\n');
+	console.log(chalk.cyan.bold('deps report'));
+	console.log();
 	console.log(table.toString());
 }
 
