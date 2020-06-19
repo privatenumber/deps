@@ -26,7 +26,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && tsc -p src --composite false --noEmit"
+      "pre-commit": "lint-staged && tsc -p src --composite false --noEmit",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
@@ -54,6 +55,8 @@
     "tempy": "^0.5.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@types/minimist": "^1.2.0",
     "@types/node": "^14.0.13",
     "husky": "^4.2.5",
