@@ -11,9 +11,8 @@
   ],
   "files": [
     "bin",
-    "lib"
+    "dist"
   ],
-  "main": "index.js",
   "bin": {
     "deps": "bin/deps.js",
     "deps-start": "bin/deps-start.sh",
