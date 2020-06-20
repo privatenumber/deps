@@ -23,7 +23,7 @@
     "dev": "npm run build -- -w",
     "lint": "xo",
     "prerelease": "npm run build",
-    "release": "git add dist && standard-version -a"
+    "version": "git add dist && standard-version -a"
   },
   "husky": {
     "hooks": {
