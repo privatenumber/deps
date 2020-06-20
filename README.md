@@ -2,6 +2,10 @@
 
 Accurately detect which Node dependencies are in-use with V8 Coverage 🔥
 
+<p align="center">
+  <img src="/.github/screenshot.png" width="70%">
+</p>
+
 #### Try it out!
 ```sh
 $ npx deps [...command]
