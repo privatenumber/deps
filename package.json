@@ -21,7 +21,9 @@
   "scripts": {
     "build": "rm -rf dist && tsc -p src",
     "dev": "npm run build -- -w",
-    "lint": "xo"
+    "lint": "xo",
+    "prerelease": "npm run build",
+    "release": "git add dist && standard-version -a"
   },
   "husky": {
     "hooks": {
@@ -59,6 +61,7 @@
     "@types/node": "^14.0.13",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.10",
+    "standard-version": "^8.0.0",
     "typescript": "^3.9.5",
     "xo": "^0.32.0"
   }
