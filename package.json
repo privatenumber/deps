@@ -11,7 +11,8 @@
   ],
   "files": [
     "bin",
-    "dist"
+    "dist/**/*.js",
+    "dist/**/*.d.ts"
   ],
   "bin": {
     "deps": "bin/deps.js",
