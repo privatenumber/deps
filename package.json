@@ -22,8 +22,7 @@
     "build": "rm -rf dist && tsc -p src",
     "dev": "npm run build -- -w",
     "lint": "xo",
-    "prerelease": "npm run build && git add -f dist",
-    "version": "standard-version -a"
+    "version": "standard-version"
   },
   "husky": {
     "hooks": {
