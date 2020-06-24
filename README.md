@@ -1,9 +1,9 @@
-# 📦 deps <a href="https://npm.im/deps"><img src="https://badgen.net/npm/v/deps"></a> <a href="https://npm.im/deps"><img src="https://badgen.net/npm/dm/deps"></a> <a href="https://packagephobia.now.sh/result?p=deps"><img src="https://packagephobia.now.sh/badge?p=deps"></a>
+# 📦🔍 deps <a href="https://npm.im/deps"><img src="https://badgen.net/npm/v/deps"></a> <a href="https://npm.im/deps"><img src="https://badgen.net/npm/dm/deps"></a> <a href="https://packagephobia.now.sh/result?p=deps"><img src="https://packagephobia.now.sh/badge?p=deps"></a>
 
 <p align="center">
   <img src="https://github.com/privatenumber/deps/raw/master/.github/screenshot.png" width="70%">
   <br>
-  Accurately detect which Node dependencies are in-use with V8 Coverage 🔥
+  Analyze which Node dependencies are in-use with V8 Coverage 🔥
 </p>
 
 ## 🙋 Why?
