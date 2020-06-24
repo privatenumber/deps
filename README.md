@@ -65,10 +65,10 @@ _Prerequisite: install `deps` globally_
 
 ## 💁‍♂️ FAQ
 
-#### How does it work?
+#### How does `deps` work?
 `deps` detects which modules are loaded by using [V8's code coverage](https://nodejs.org/api/cli.html#cli_node_v8_coverage_dir) feature, so it's very accurate. However, it doesn't detect file-system reads, as they are simply read as text rather than actually being parsed and executed. That means it can't detect what files are statically analyzed by bundlers (eg. Webpack, Rollup, etc.). I am considering supporting FS reads in the future.
 
-#### How does it compare to `depcheck`?
+#### How does `deps` compare to `depcheck`?
 [`depcheck`](https://github.com/depcheck/depcheck) statically analyzes your project to see which dependencies are imported, avoiding the need to execute code. In contrast, `deps` executes code to analyze which dependencies were loaded during run-time. They work in completely different ways, but a major drawback for me is that `depcheck` requires a ["special"](https://github.com/depcheck/depcheck#special) for supporting whether a module was loaded via dev-tools.
 
 ## 💼 License
