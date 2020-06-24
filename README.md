@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://github.com/privatenumber/deps/raw/master/.github/screenshot.png" width="70%">
   <br>
-  Analyze which `package.json` dependencies are in-use with V8 Coverage 🔥
+  Analyze which <code>package.json</code> dependencies are in-use with V8 Coverage 🔥
 </p>
 
 ## 🙋 Why?
