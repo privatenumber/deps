@@ -6,9 +6,15 @@
   Accurately detect which Node dependencies are in-use with V8 Coverage 🔥
 </p>
 
-#### Try it out!
+## 🙋 Why?
+- 🧹 **Tidy `package.json`** Find out which dependencies are used/unused
+- 🔥 **V8 Coverage** Uses [Node's Coverage feature](https://nodejs.org/api/cli.html#cli_node_v8_coverage_dir) to accurately identify which modules are loaded
+- 💅 **Pretty output** View the results in a readable table. Save the output in JSON to view later
+- 🚀 **Ready-to-go** Designed to be easy to use with `npx`—No installation required!
+
+#### 👉 Try it out!
 ```sh
-$ npx deps [...command]
+$ npx deps [...Node command]
 ```
 _eg. `npx deps npm run build`_
 
