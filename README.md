@@ -16,7 +16,7 @@
 ```sh
 $ npx deps [...Node command]
 ```
-_eg. `npx deps npm run build`_
+_eg._ `npx deps npm run build`
 
 ## :rocket: Install
 Install globally if you don't want to use it via [npx](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner).
